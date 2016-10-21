@@ -2,38 +2,67 @@ SpaceShip one;
 public void setup() 
 {
   size(700,700);
-  SpaceShip one= new SpaceShip();
+  
+ one= new SpaceShip();
   one.setX(350);
   one.setY(350);
 }
 public void draw() 
 {
+  background(0,0,0);
   one.show();
+  one.move();
+  
+}
+public void keyPressed()
+{
+  if (key=='w')
+  {
+    one.accelerate(.4);
+    //one.rotate(30);
+    
+}
+if (key=='x')
+{
+  one.rotate(35);
+
+}
+if (key=='z')
+{
+  one.accelerate(-.2);
+}
+if (key=='q')
+{
+  one.rotate(-35);
+}
 }
 class SpaceShip extends Floater  
 {  
-  int myColor;
+  int strokew;
   public SpaceShip()
   {
    
-    corners =7;
+    corners =8;
+    strokew=
+    myColor= color(224,27,66);
+    myColor2=color(255,255,255);
     xCorners=new int[corners];
     yCorners=new int[corners];
-    xCorners[0]= 12;
+    xCorners[0]= 36;
     yCorners[0]=0;
-    xCorners[1]=4;
-    yCorners[1]=7;
-    xCorners[2]=-5;
-    yCorners[2]=7;
-    xCorners[3]=-12;
-    yCorners[3]=15;
-    xCorners[4]=-12;
-    yCorners[4]=-15;
-    xCorners[5]=-5;
-    yCorners[5]=-7;
-    xCorners[6]=4;
-    yCorners[6]=-7;
-    xCorners[7]=12;
+    xCorners[1]= 12;
+    yCorners[1]=21;
+    xCorners[2]=-15;
+    yCorners[2]=21;
+    xCorners[3]=-36;
+    yCorners[3]=45;
+    xCorners[4]=-36;
+    yCorners[4]=-45;
+    xCorners[5]=-15;
+    yCorners[5]=-21;
+    xCorners[6]=12;
+    yCorners[6]=-21;
+    xCorners[7]=36;
     yCorners[7]=0;
 
   } 
@@ -57,7 +86,8 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected int corners;  //the number of corners, a triangular floater has 3   
   protected int[] xCorners;   
   protected int[] yCorners;   
-  protected int myColor;   
+  protected int myColor; 
+  protected int myColor2;  
   protected int myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
@@ -112,8 +142,10 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void show ()  //Draws the floater at the current position  
   {             
-    fill(myColor);   
-    stroke(myColor);    
+    fill(myColor2);   
+    stroke(myColor); 
+    strokeWeight(5);
+
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180);                 
     int xRotatedTranslated, yRotatedTranslated;    
