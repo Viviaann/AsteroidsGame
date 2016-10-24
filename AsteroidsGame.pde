@@ -1,7 +1,9 @@
 SpaceShip one;
+PImage back;
 public void setup() 
 {
-  size(700,700);
+  size(2877,1482);
+  back=loadImage("ggg.jpg");
   
  one= new SpaceShip();
   one.setX(350);
@@ -10,6 +12,7 @@ public void setup()
 public void draw() 
 {
   background(0,0,0);
+  image(back,0,0,width,height);
   one.show();
   one.move();
   
