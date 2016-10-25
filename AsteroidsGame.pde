@@ -1,13 +1,24 @@
 SpaceShip one;
 PImage back;
+PImage starr;
+Stars[] spark;
+int n= (int)(Math.random()*300);
 public void setup() 
 {
-  size(2877,1482);
-  back=loadImage("ggg.jpg");
+  size(800,800);
+  back=loadImage("ppp.jpg");
+  starr=loadImage("ooo.png");
   
  one= new SpaceShip();
   one.setX(350);
   one.setY(350);
+
+
+spark = new Stars[n];
+for(int i=0; i<n; i++)
+{
+  spark[i]=new Stars();
+}
 }
 public void draw() 
 {
@@ -15,7 +26,10 @@ public void draw()
   image(back,0,0,width,height);
   one.show();
   one.move();
-  
+  for (int i=0; i<n; i++)
+  {
+    spark[i].show();
+  }
 }
 public void keyPressed()
 {
@@ -25,19 +39,37 @@ public void keyPressed()
     //one.rotate(30);
     
 }
-if (key=='x')
+if (key=='a')
 {
   one.rotate(35);
 
 }
-if (key=='z')
+if (key=='d')
 {
   one.accelerate(-.2);
 }
-if (key=='q')
+if (key=='s')
 {
   one.rotate(-35);
 }
+}
+class Stars 
+{
+  private int sX,sY,sN;
+  public Stars()
+  {
+
+  }
+  public void setsX(int i){sX=i;};
+  public int getsX(){return sX;};
+  public void setsY(int j){sY=j;};
+  public int getsY(){return sY;};
+
+
+public void show()
+{image(starr,getsX(),getsY(),width/20,height/20);
+}
+
 }
 class SpaceShip extends Floater  
 {  
@@ -46,7 +78,6 @@ class SpaceShip extends Floater
   {
    
     corners =8;
-    strokew=
     myColor= color(224,27,66);
     myColor2=color(255,255,255);
     xCorners=new int[corners];
