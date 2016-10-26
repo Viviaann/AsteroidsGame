@@ -2,34 +2,37 @@ SpaceShip one;
 PImage back;
 PImage starr;
 Stars[] spark;
-int n= (int)(Math.random()*300);
+int n= 20;
 public void setup() 
 {
   size(800,800);
   back=loadImage("ppp.jpg");
   starr=loadImage("ooo.png");
-  
+
+  spark = new Stars[n];
+for(int i=0; i<n; i++)
+{
+  spark[i]=new Stars();
+}
+
  one= new SpaceShip();
   one.setX(350);
   one.setY(350);
 
 
-spark = new Stars[n];
-for(int i=0; i<n; i++)
-{
-  spark[i]=new Stars();
-}
+
 }
 public void draw() 
 {
   background(0,0,0);
   image(back,0,0,width,height);
-  one.show();
-  one.move();
-  for (int i=0; i<n; i++)
+ for (int i=0; i<n; i++)
   {
     spark[i].show();
   }
+  one.show();
+  one.move();
+ 
 }
 public void keyPressed()
 {
@@ -55,22 +58,32 @@ if (key=='s')
 }
 class Stars 
 {
-  private int sX,sY,sN;
+  private int sX,sY,n;
   public Stars()
   {
-
+sX=(int)(Math.random()*800);
+sY=(int)(Math.random()*800);
+n=7;
   }
-  public void setsX(int i){sX=i;};
-  public int getsX(){return sX;};
-  public void setsY(int j){sY=j;};
-  public int getsY(){return sY;};
-
-
 public void show()
-{image(starr,getsX(),getsY(),width/20,height/20);
+{//image(starr,getsX(),getsY(),width/20,height/20);
+  stroke(190,190,190);
+  strokeWeight(3);
+  line(sX,sY-n,sX,sY+n);
+  line(sX-n,sY,sX+n,sY);
+  stroke(200,200,200);
+  line(sX+5,sY+5,sX-5,sY-5);
+  line(sX+5,sY-5,sX-5,sY+5);
+  n=n+1;
+  if (n>7.5)
+    {n=0;}
+
+    
+  }
 }
 
-}
+
+
 class SpaceShip extends Floater  
 {  
   int strokew;
