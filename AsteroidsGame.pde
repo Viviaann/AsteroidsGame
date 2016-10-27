@@ -3,6 +3,7 @@ PImage back;
 PImage starr;
 Stars[] spark;
 int n= 20;
+ShootingStar[]star; 
 public void setup() 
 {
   size(800,800);
@@ -10,9 +11,14 @@ public void setup()
   starr=loadImage("ooo.png");
 
   spark = new Stars[n];
+  star=new ShootingStar[n];
 for(int i=0; i<n; i++)
 {
   spark[i]=new Stars();
+}
+for(int i=0; i<n; i++)
+{
+  star[i]=new ShootingStar();
 }
 
  one= new SpaceShip();
@@ -29,6 +35,10 @@ public void draw()
  for (int i=0; i<n; i++)
   {
     spark[i].show();
+  }
+  for (int i=0; i<n; i++)
+  {
+    star[i].show();
   }
   one.show();
   one.move();
@@ -80,6 +90,34 @@ public void show()
 
     
   }
+}
+class ShootingStar 
+{
+  private int sX,sY,n;
+  public ShootingStar()
+  {
+    sX=350;
+    sY=350;
+    n=9;
+  }
+  public void show()
+  {
+    stroke(190,190,80);
+  strokeWeight(3);
+  line(sX,sY+n,sX,sY+n);
+  line(sX-n,sY,sX+n,sY);
+  stroke(200,200,80);
+  line(sX+5,sY+5,sX-5,sY-5);
+  line(sX+5,sY-5,sX-5,sY+5);
+  sX=sX+30;
+  sY=sY+30;
+  if (sX>1200)
+    {sX=0;}
+  if (sY>1200)
+    {sY=0;}
+  }
+  
+
 }
 
 
@@ -172,7 +210,8 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //wrap around screen    
     if(myCenterX >width)
     {     
-      myCenterX = 0;    
+      myCenterX = 0;
+          
     }    
     else if (myCenterX<0)
     {     
