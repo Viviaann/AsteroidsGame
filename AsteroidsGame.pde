@@ -3,12 +3,20 @@ PImage back;
 PImage starr;
 Stars[] spark;
 int n= 20;
-ShootingStar[]star; 
+ShootingStar[]star;
+PImage spacestar; 
+
+
+
+
+
 public void setup() 
 {
   size(800,800);
   back=loadImage("ppp.jpg");
   starr=loadImage("ooo.png");
+  spacestar=loadImage("spacestar");
+  
 
   spark = new Stars[n];
   star=new ShootingStar[n];
@@ -44,6 +52,10 @@ public void draw()
   one.move();
  
 }
+
+
+
+
 public void keyPressed()
 {
   if (key=='w')
@@ -66,6 +78,12 @@ if (key=='s')
   one.rotate(-35);
 }
 }
+
+
+
+
+
+
 class Stars 
 {
   private int sX,sY,n;
@@ -91,26 +109,33 @@ public void show()
     
   }
 }
+
+
+
+
+
 class ShootingStar 
 {
   private int sX,sY,n;
   public ShootingStar()
   {
-    sX=350;
-    sY=350;
+    sX=(int)(Math.random()*350);
+    sY=(int)(Math.random()*350);
     n=9;
   }
   public void show()
   {
-    stroke(190,190,80);
-  strokeWeight(3);
-  line(sX,sY+n,sX,sY+n);
-  line(sX-n,sY,sX+n,sY);
-  stroke(200,200,80);
-  line(sX+5,sY+5,sX-5,sY-5);
-  line(sX+5,sY-5,sX-5,sY+5);
-  sX=sX+30;
-  sY=sY+30;
+
+    image(spacestar,sX,sY,width/2,height/2);
+  // stroke(190,190,80);
+  // strokeWeight(3);
+  // line(sX,sY+n,sX,sY+n);
+  // line(sX-n,sY,sX+n,sY);
+  // stroke(200,200,80);
+  // line(sX+5,sY+5,sX-5,sY-5);
+  // line(sX+5,sY-5,sX-5,sY+5);
+  sX=sX+10;
+  sY=sY+10;
   if (sX>1200)
     {sX=0;}
   if (sY>1200)
