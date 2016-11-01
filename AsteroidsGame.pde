@@ -3,6 +3,7 @@ PImage back;
 PImage starr;
 Stars[] spark;
 int n= 20;
+int w= 5;
 ShootingStar[]star;
 PImage spacestar; 
 
@@ -15,16 +16,16 @@ public void setup()
   size(800,800);
   back=loadImage("ppp.jpg");
   starr=loadImage("ooo.png");
-  spacestar=loadImage("spacestar");
+  spacestar=loadImage("spacee.png");
   
 
   spark = new Stars[n];
-  star=new ShootingStar[n];
 for(int i=0; i<n; i++)
 {
   spark[i]=new Stars();
 }
-for(int i=0; i<n; i++)
+star=new ShootingStar[w];
+for(int i=0; i<w; i++)
 {
   star[i]=new ShootingStar();
 }
@@ -44,7 +45,7 @@ public void draw()
   {
     spark[i].show();
   }
-  for (int i=0; i<n; i++)
+  for (int i=0; i<w; i++)
   {
     star[i].show();
   }
@@ -90,7 +91,7 @@ class Stars
   public Stars()
   {
 sX=(int)(Math.random()*800);
-sY=(int)(Math.random()*800);
+sY=(int)(Math.random()*500);
 n=7;
   }
 public void show()
@@ -126,7 +127,7 @@ class ShootingStar
   public void show()
   {
 
-    image(spacestar,sX,sY,width/2,height/2);
+     image(spacestar,sX,sY,width/8,height/8);
   // stroke(190,190,80);
   // strokeWeight(3);
   // line(sX,sY+n,sX,sY+n);
@@ -134,8 +135,8 @@ class ShootingStar
   // stroke(200,200,80);
   // line(sX+5,sY+5,sX-5,sY-5);
   // line(sX+5,sY-5,sX-5,sY+5);
-  sX=sX+10;
-  sY=sY+10;
+  sX=sX+3;
+  sY=sY+3;
   if (sX>1200)
     {sX=0;}
   if (sY>1200)
@@ -186,10 +187,55 @@ class SpaceShip extends Floater
         public double getDirectionY(){return myDirectionY;}   
         public void setPointDirection(int degrees){myPointDirection=degrees;}   
         public double getPointDirection(){return myPointDirection;} 
-  
-  
+  }
 
-  
+
+class Asteroids extends Floater
+{   private int rotspeed;
+    public Asteroids()
+{
+          rotspeed=(int)(Math.random()*6);
+          corners = 13;
+    xCorners=new int[corners];
+    yCorners=new int[corners];
+    xCorners[0]= 36;
+    yCorners[0]=0;
+    xCorners[1]= 12;
+    yCorners[1]=21;
+    xCorners[2]=-15;
+    yCorners[2]=21;
+    xCorners[3]=-36;
+    yCorners[3]=45;
+    xCorners[4]=-36;
+    yCorners[4]=-45;
+    xCorners[5]=-15;
+    yCorners[5]=-21;
+    xCorners[6]=12;
+    yCorners[6]=-21;
+    xCorners[7]=36;
+    yCorners[7]=0;
+    xCorners[3]=-36;
+    yCorners[3]=45;
+    xCorners[4]=-36;
+    yCorners[4]=-45;
+    xCorners[5]=-15;
+    yCorners[5]=-21;
+    xCorners[6]=12;
+    yCorners[6]=-21;
+    xCorners[7]=36;
+    yCorners[7]=0;
+
+
+}
+
+
+
+
+
+
+
+
+
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
