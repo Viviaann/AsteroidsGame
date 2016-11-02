@@ -6,6 +6,7 @@ int n= 20;
 int w= 5;
 ShootingStar[]star;
 PImage spacestar; 
+Asteroids[] two;
 
 
 
@@ -24,6 +25,8 @@ for(int i=0; i<n; i++)
 {
   spark[i]=new Stars();
 }
+
+
 star=new ShootingStar[w];
 for(int i=0; i<w; i++)
 {
@@ -33,6 +36,12 @@ for(int i=0; i<w; i++)
  one= new SpaceShip();
   one.setX(350);
   one.setY(350);
+
+two= new Asteroids[n];
+for (int x=0; x< two.length; x++)
+{
+  two[x]=new Asteroids();
+}
 
 
 
@@ -51,6 +60,11 @@ public void draw()
   }
   one.show();
   one.move();
+
+  for (int x=0; x< n; x++)
+  {
+    //two.move();
+  }
  
 }
 
@@ -196,36 +210,58 @@ class Asteroids extends Floater
 {
           rotspeed=(int)(Math.random()*6);
           corners = 13;
+    myColor= color(64,51,47);
     xCorners=new int[corners];
     yCorners=new int[corners];
-    xCorners[0]= 36;
+    xCorners[0]= 22;
     yCorners[0]=0;
-    xCorners[1]= 12;
-    yCorners[1]=21;
-    xCorners[2]=-15;
-    yCorners[2]=21;
-    xCorners[3]=-36;
-    yCorners[3]=45;
-    xCorners[4]=-36;
-    yCorners[4]=-45;
-    xCorners[5]=-15;
-    yCorners[5]=-21;
-    xCorners[6]=12;
-    yCorners[6]=-21;
-    xCorners[7]=36;
-    yCorners[7]=0;
-    xCorners[3]=-36;
-    yCorners[3]=45;
-    xCorners[4]=-36;
-    yCorners[4]=-45;
-    xCorners[5]=-15;
-    yCorners[5]=-21;
-    xCorners[6]=12;
-    yCorners[6]=-21;
-    xCorners[7]=36;
-    yCorners[7]=0;
+    xCorners[1]= 20;
+    yCorners[1]=12;
+    xCorners[2]=12;
+    yCorners[2]=18;
+    xCorners[3]=0;
+    yCorners[3]=20;
+    xCorners[4]=-12;
+    yCorners[4]=18;
+    xCorners[5]=-20;
+    yCorners[5]=12;
+    xCorners[6]=-22;
+    yCorners[6]=0;
+    xCorners[7]=-20;
+    yCorners[7]=-12;
+    xCorners[8]=-12;
+    yCorners[8]=-18;
+    xCorners[9]=0;
+    yCorners[9]=-20;
+    xCorners[10]=12;
+    yCorners[10]=-18;
+    xCorners[11]=20;
+    yCorners[11]=-12;
+    xCorners[12]=22;
+    yCorners[12]=0;
 
 
+}
+public void move()
+
+{
+
+myDirectionX=myDirectionX +1;
+myDirectionY=myDirectionX+1;
+
+
+
+}
+public void setX(int x){myCenterX=x;}  
+        public int getX(){return (int)myCenterX;}   
+        public void setY(int y){myCenterY=y;}   
+        public int getY(){return (int)myCenterY;}   
+        public void setDirectionX(double x){myDirectionX=x;}  
+        public double getDirectionX(){return myDirectionX;}  
+        public void setDirectionY(double y){myDirectionY=y;}   
+        public double getDirectionY(){return myDirectionY;}   
+        public void setPointDirection(int degrees){myPointDirection=degrees;}   
+        public double getPointDirection(){return myPointDirection;} 
 }
 
 
@@ -234,9 +270,6 @@ class Asteroids extends Floater
 
 
 
-
-
-}
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
