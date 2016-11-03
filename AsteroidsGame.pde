@@ -41,6 +41,8 @@ two= new Asteroids[n];
 for (int x=0; x< two.length; x++)
 {
   two[x]=new Asteroids();
+  two[x].setX(350);
+  two[x].setY(380);
 }
 
 
@@ -63,9 +65,11 @@ public void draw()
 
   for (int x=0; x< n; x++)
   {
-    //two.move();
+    //two[n].move();
+    two[n].show();
   }
  
+
 }
 
 
@@ -245,13 +249,44 @@ class Asteroids extends Floater
 public void move()
 
 {
+  super.move();
+   myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
 
-myDirectionX=myDirectionX +1;
-myDirectionY=myDirectionX+1;
-
+    //wrap around screen    
+    if(myCenterX >width)
+    {     
+      myCenterX = 0;
+          
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
 
 
 }
+// public void show()
+// {
+//    double xRotatedTranslated, yRotatedTranslated;
+//    double d
+//  for(int nI = 0; nI < corners; nI++)    
+//     {     
+//       //rotate and translate the coordinates of the floater using current direction 
+//       xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+//       yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+//       vertex(xRotatedTranslated,yRotatedTranslated);    
+//     }   
+//     endShape(CLOSE);  
+//}
 public void setX(int x){myCenterX=x;}  
         public int getX(){return (int)myCenterX;}   
         public void setY(int y){myCenterY=y;}   
