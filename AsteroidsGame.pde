@@ -37,12 +37,12 @@ for(int i=0; i<w; i++)
   one.setX(350);
   one.setY(350);
 
-two= new Asteroids[n];
-for (int x=0; x< two.length; x++)
+two= new Asteroids[6];
+for (int x=0; x<  two.length; x++)
 {
   two[x]=new Asteroids();
-  two[x].setX(350);
-  two[x].setY(380);
+  two[x].setX((int)Math.random()*600);
+  two[x].setY((int)(Math.random()*400));
 }
 
 
@@ -63,10 +63,10 @@ public void draw()
   one.show();
   one.move();
 
-  for (int x=0; x< n; x++)
+  for (int x=0; x< two.length; x++)
   {
-    //two[n].move();
-    two[n].show();
+    two[x].move();
+    two[x].show();
   }
  
 
@@ -80,6 +80,10 @@ public void keyPressed()
   if (key=='w')
   {
     one.accelerate(.4);
+    fill(216,232,237);
+    ellipse(one.getX()-40, one.getY(),10,10);
+    ellipse(one.getX()-60, one.getY(),10,10);
+    ellipse(one.getX()-80, one.getY(),10,10);
     //one.rotate(30);
     
 }
@@ -209,12 +213,18 @@ class SpaceShip extends Floater
 
 
 class Asteroids extends Floater
-{   private int rotspeed;
+{   private int rotSpeed;
     public Asteroids()
 {
-          rotspeed=(int)(Math.random()*6);
+          myDirectionX=(int)(Math.random()*7);
+          myDirectionY=(int)(Math.random()*7);
+          myCenterX=(int)(Math.random()*300);
+          myCenterY=(int)(Math.random()*300);
+          myPointDirection= 30;
+          rotSpeed=(int)(Math.random()*4);
           corners = 13;
-    myColor= color(64,51,47);
+    myColor= color(195,219,227);
+    myColor2= color(64,51,47);
     xCorners=new int[corners];
     yCorners=new int[corners];
     xCorners[0]= 22;
@@ -249,9 +259,13 @@ class Asteroids extends Floater
 public void move()
 
 {
+  rotate(rotSpeed);
+  if (rotSpeed<=2)
+    {rotSpeed= -1* rotSpeed;};
+    
   super.move();
-   myCenterX += myDirectionX;    
-    myCenterY += myDirectionY;     
+   myCenterX = (int)(myCenterX+ myDirectionX* (int)(Math.random()*2));    
+    myCenterY = (int)(myCenterY+ myDirectionY* (int)(Math.random()*2));     
 
     //wrap around screen    
     if(myCenterX >width)
@@ -274,19 +288,7 @@ public void move()
 
 
 }
-// public void show()
-// {
-//    double xRotatedTranslated, yRotatedTranslated;
-//    double d
-//  for(int nI = 0; nI < corners; nI++)    
-//     {     
-//       //rotate and translate the coordinates of the floater using current direction 
-//       xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
-//       yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
-//       vertex(xRotatedTranslated,yRotatedTranslated);    
-//     }   
-//     endShape(CLOSE);  
-//}
+
 public void setX(int x){myCenterX=x;}  
         public int getX(){return (int)myCenterX;}   
         public void setY(int y){myCenterY=y;}   
