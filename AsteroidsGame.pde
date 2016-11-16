@@ -3,10 +3,10 @@ PImage back;
 PImage starr;
 Stars[] spark;
 int n= 20;
-int w= 5;
+int w= 6;
 ShootingStar[]star;
 PImage spacestar; 
-Asteroids[] two;
+ArrayList <Asteroids> two;
 
 
 
@@ -37,12 +37,17 @@ for(int i=0; i<w; i++)
   one.setX(350);
   one.setY(350);
 
-two= new Asteroids[6];
-for (int x=0; x<  two.length; x++)
+
+theRocks = new ArrayList <Asteroids>();
+
+two= new Asteroids[10];
+for (int x=0; x< two .length; x++)
 {
   two[x]=new Asteroids();
   two[x].setX((int)Math.random()*600);
   two[x].setY((int)(Math.random()*400));
+  two[x].setDirectionX((int)(Math.random()*30));
+  two[x].setDirectionY((int)(Math.random()*40));
 }
 
 
@@ -216,12 +221,12 @@ class Asteroids extends Floater
 {   private int rotSpeed;
     public Asteroids()
 {
-          myDirectionX=(int)(Math.random()*7);
-          myDirectionY=(int)(Math.random()*7);
+          myDirectionX=(int)(Math.random()*11-5);
+          myDirectionY=(int)(Math.random()*11-5);
           myCenterX=(int)(Math.random()*300);
           myCenterY=(int)(Math.random()*300);
           myPointDirection= 30;
-          rotSpeed=(int)(Math.random()*4);
+          rotSpeed=(int)(Math.random()*60+1);
           corners = 13;
     myColor= color(195,219,227);
     myColor2= color(64,51,47);
@@ -259,13 +264,19 @@ class Asteroids extends Floater
 public void move()
 
 {
+  // if (myCenterX> 150)
+  //   { myCenterX=  (myCenterX)- 60 ;}
+  // else ( myCenterX< 150)
+  // {myCenterX = myCenterX;}
   rotate(rotSpeed);
-  if (rotSpeed<=2)
+  if (rotSpeed<=6)
     {rotSpeed= -1* rotSpeed;};
     
   super.move();
-   myCenterX = (int)(myCenterX+ myDirectionX* (int)(Math.random()*2));    
-    myCenterY = (int)(myCenterY+ myDirectionY* (int)(Math.random()*2));     
+   // myCenterX = (int)(myCenterX+ myDirectionX* (int)(Math.random()*2));    
+   //  myCenterY = (int)(myCenterY+ myDirectionY* (int)(Math.random()*2));     
+      // if (myCenterX < 150)
+      //  {myCenterX = -(int)(Math.random()*200);} 
 
     //wrap around screen    
     if(myCenterX >width)
