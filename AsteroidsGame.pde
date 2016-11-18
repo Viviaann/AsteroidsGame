@@ -6,7 +6,8 @@ int n= 20;
 int w= 6;
 ShootingStar[]star;
 PImage spacestar; 
-ArrayList <Asteroids> two;
+ArrayList <Asteroids> theRocks;
+Asteroids two;
 
 
 
@@ -39,16 +40,19 @@ for(int i=0; i<w; i++)
 
 
 theRocks = new ArrayList <Asteroids>();
+for (int i=0; i<10; i++)
+  {
+    theRocks.add(i, two= new Asteroids());
+  }
 
-two= new Asteroids[10];
-for (int x=0; x< two .length; x++)
-{
-  two[x]=new Asteroids();
-  two[x].setX((int)Math.random()*600);
-  two[x].setY((int)(Math.random()*400));
-  two[x].setDirectionX((int)(Math.random()*30));
-  two[x].setDirectionY((int)(Math.random()*40));
-}
+// for (int x=0; x< two .length; x++)
+// {
+//   two[x]=new Asteroids();
+//   two[x].setX((int)Math.random()*600);
+//   two[x].setY((int)(Math.random()*400));
+//   two[x].setDirectionX((int)(Math.random()*30));
+//   two[x].setDirectionY((int)(Math.random()*40));
+// }
 
 
 
@@ -68,11 +72,16 @@ public void draw()
   one.show();
   one.move();
 
-  for (int x=0; x< two.length; x++)
+  for (int i=0; i<theRocks.size(); i++)
   {
-    two[x].move();
-    two[x].show();
+    theRocks.get(i).move();
+    theRocks.get(i).show();
+    if(dist(one.getX(), one.getY(),theRocks.get(i).getX(), theRocks.get(i).getY())<30)
+      theRocks.remove(i);
+
+
   }
+  
  
 
 }
