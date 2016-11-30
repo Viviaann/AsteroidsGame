@@ -8,6 +8,8 @@ ShootingStar[]star;
 PImage spacestar; 
 ArrayList <Asteroids> theRocks;
 Asteroids two;
+ArrayList <Bullet> Bullett= new ArrayList <Bullet>();;
+Bullet three;
 
 
 
@@ -45,6 +47,8 @@ for (int i=0; i<10; i++)
     theRocks.add(i, two= new Asteroids());
   }
 
+
+
 // for (int x=0; x< two .length; x++)
 // {
 //   two[x]=new Asteroids();
@@ -78,6 +82,13 @@ public void draw()
     theRocks.get(i).show();
     if(dist(one.getX(), one.getY(),theRocks.get(i).getX(), theRocks.get(i).getY())<30)
       theRocks.remove(i);
+  }
+  for (int b=0; b<Bullett.size(); b++)
+  {
+    Bullett.get(b).move();
+    Bullett.get(b).show();
+    if(dist(three.getX(), three.getY(),Bullett.get(i).getX(), Bullett.get(b).getY())<30)
+      Bullett.remove(b);
 
 
   }
@@ -94,10 +105,8 @@ public void keyPressed()
   if (key=='w')
   {
     one.accelerate(.4);
-    fill(216,232,237);
-    ellipse(one.getX()-40, one.getY(),10,10);
-    ellipse(one.getX()-60, one.getY(),10,10);
-    ellipse(one.getX()-80, one.getY(),10,10);
+        
+   rocket=true; 
     //one.rotate(30);
     
 }
@@ -113,6 +122,13 @@ if (key=='d')
 if (key=='s')
 {
   one.rotate(-35);
+}
+if(key==' ')
+{
+  for (int b=0;b< 12; b++)
+{
+
+  Bullett.add(b, three=new Bullet());
 }
 }
 
@@ -213,6 +229,11 @@ class SpaceShip extends Floater
     yCorners[7]=0;
 
   } 
+  
+        
+  
+     
+  
         public void setX(int x){myCenterX=x;}  
         public int getX(){return (int)myCenterX;}   
         public void setY(int y){myCenterY=y;}   
@@ -223,8 +244,8 @@ class SpaceShip extends Floater
         public double getDirectionY(){return myDirectionY;}   
         public void setPointDirection(int degrees){myPointDirection=degrees;}   
         public double getPointDirection(){return myPointDirection;} 
-  }
-
+  
+}
 
 class Asteroids extends Floater
 {   private int rotSpeed;
