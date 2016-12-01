@@ -87,10 +87,8 @@ public void draw()
   {
     Bullett.get(b).move();
     Bullett.get(b).show();
-    if(dist(three.getX(), three.getY(),Bullett.get(i).getX(), Bullett.get(b).getY())<30)
+    if(dist(three.getX(), three.getY(),Bullett.get(b).getX(), Bullett.get(b).getY())<30)
       Bullett.remove(b);
-
-
   }
   
  
@@ -106,10 +104,9 @@ public void keyPressed()
   {
     one.accelerate(.4);
         
-   rocket=true; 
+   //rocket=true; 
     //one.rotate(30);
-    
-}
+    }
 if (key=='a')
 {
   one.rotate(35);
@@ -125,227 +122,15 @@ if (key=='s')
 }
 if(key==' ')
 {
-  for (int b=0;b< 12; b++)
+  // Bullett.add(new Bullet(one));
+  for (int b=0;b< 5; b++)
 {
 
-  Bullett.add(b, three=new Bullet());
+  Bullett.add(b, three=new Bullet(one));
+  three.accelerate(.4);
 }
 }
-
-
-
-
-
-
-class Stars 
-{
-  private int sX,sY,n;
-  public Stars()
-  {
-sX=(int)(Math.random()*800);
-sY=(int)(Math.random()*500);
-n=7;
-  }
-public void show()
-{//image(starr,getsX(),getsY(),width/20,height/20);
-  stroke(190,190,190);
-  strokeWeight(3);
-  line(sX,sY-n,sX,sY+n);
-  line(sX-n,sY,sX+n,sY);
-  stroke(200,200,200);
-  line(sX+5,sY+5,sX-5,sY-5);
-  line(sX+5,sY-5,sX-5,sY+5);
-  n=n+1;
-  if (n>7.5)
-    {n=0;}
-
-    
-  }
 }
-
-
-
-
-
-class ShootingStar 
-{
-  private int sX,sY,n;
-  public ShootingStar()
-  {
-    sX=(int)(Math.random()*350);
-    sY=(int)(Math.random()*350);
-    n=9;
-  }
-  public void show()
-  {
-
-     image(spacestar,sX,sY,width/8,height/8);
-  // stroke(190,190,80);
-  // strokeWeight(3);
-  // line(sX,sY+n,sX,sY+n);
-  // line(sX-n,sY,sX+n,sY);
-  // stroke(200,200,80);
-  // line(sX+5,sY+5,sX-5,sY-5);
-  // line(sX+5,sY-5,sX-5,sY+5);
-  sX=sX+3;
-  sY=sY+3;
-  if (sX>1200)
-    {sX=0;}
-  if (sY>1200)
-    {sY=0;}
-  }
-  
-
-}
-
-
-
-class SpaceShip extends Floater  
-{  
-  int strokew;
-  public SpaceShip()
-  {
-   
-    corners =8;
-    myColor= color(224,27,66);
-    myColor2=color(255,255,255);
-    xCorners=new int[corners];
-    yCorners=new int[corners];
-    xCorners[0]= 36;
-    yCorners[0]=0;
-    xCorners[1]= 12;
-    yCorners[1]=21;
-    xCorners[2]=-15;
-    yCorners[2]=21;
-    xCorners[3]=-36;
-    yCorners[3]=45;
-    xCorners[4]=-36;
-    yCorners[4]=-45;
-    xCorners[5]=-15;
-    yCorners[5]=-21;
-    xCorners[6]=12;
-    yCorners[6]=-21;
-    xCorners[7]=36;
-    yCorners[7]=0;
-
-  } 
-  
-        
-  
-     
-  
-        public void setX(int x){myCenterX=x;}  
-        public int getX(){return (int)myCenterX;}   
-        public void setY(int y){myCenterY=y;}   
-        public int getY(){return (int)myCenterY;}   
-        public void setDirectionX(double x){myDirectionX=x;}  
-        public double getDirectionX(){return myDirectionX;}  
-        public void setDirectionY(double y){myDirectionY=y;}   
-        public double getDirectionY(){return myDirectionY;}   
-        public void setPointDirection(int degrees){myPointDirection=degrees;}   
-        public double getPointDirection(){return myPointDirection;} 
-  
-}
-
-class Asteroids extends Floater
-{   private int rotSpeed;
-    public Asteroids()
-{
-          myDirectionX=(int)(Math.random()*11-5);
-          myDirectionY=(int)(Math.random()*11-5);
-          myCenterX=(int)(Math.random()*300);
-          myCenterY=(int)(Math.random()*300);
-          myPointDirection= 30;
-          rotSpeed=(int)(Math.random()*60+1);
-          corners = 13;
-    myColor= color(195,219,227);
-    myColor2= color(64,51,47);
-    xCorners=new int[corners];
-    yCorners=new int[corners];
-    xCorners[0]= 22;
-    yCorners[0]=0;
-    xCorners[1]= 20;
-    yCorners[1]=12;
-    xCorners[2]=12;
-    yCorners[2]=18;
-    xCorners[3]=0;
-    yCorners[3]=20;
-    xCorners[4]=-12;
-    yCorners[4]=18;
-    xCorners[5]=-20;
-    yCorners[5]=12;
-    xCorners[6]=-22;
-    yCorners[6]=0;
-    xCorners[7]=-20;
-    yCorners[7]=-12;
-    xCorners[8]=-12;
-    yCorners[8]=-18;
-    xCorners[9]=0;
-    yCorners[9]=-20;
-    xCorners[10]=12;
-    yCorners[10]=-18;
-    xCorners[11]=20;
-    yCorners[11]=-12;
-    xCorners[12]=22;
-    yCorners[12]=0;
-
-
-}
-public void move()
-
-{
-  // if (myCenterX> 150)
-  //   { myCenterX=  (myCenterX)- 60 ;}
-  // else ( myCenterX< 150)
-  // {myCenterX = myCenterX;}
-  rotate(rotSpeed);
-  if (rotSpeed<=6)
-    {rotSpeed= -1* rotSpeed;};
-    
-  super.move();
-   // myCenterX = (int)(myCenterX+ myDirectionX* (int)(Math.random()*2));    
-   //  myCenterY = (int)(myCenterY+ myDirectionY* (int)(Math.random()*2));     
-      // if (myCenterX < 150)
-      //  {myCenterX = -(int)(Math.random()*200);} 
-
-    //wrap around screen    
-    if(myCenterX >width)
-    {     
-      myCenterX = 0;
-          
-    }    
-    else if (myCenterX<0)
-    {     
-      myCenterX = width;    
-    }    
-    if(myCenterY >height)
-    {    
-      myCenterY = 0;    
-    }   
-    else if (myCenterY < 0)
-    {     
-      myCenterY = height;    
-    }   
-
-
-}
-
-public void setX(int x){myCenterX=x;}  
-        public int getX(){return (int)myCenterX;}   
-        public void setY(int y){myCenterY=y;}   
-        public int getY(){return (int)myCenterY;}   
-        public void setDirectionX(double x){myDirectionX=x;}  
-        public double getDirectionX(){return myDirectionX;}  
-        public void setDirectionY(double y){myDirectionY=y;}   
-        public double getDirectionY(){return myDirectionY;}   
-        public void setPointDirection(int degrees){myPointDirection=degrees;}   
-        public double getPointDirection(){return myPointDirection;} 
-}
-
-
-
-
-
 
 
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
