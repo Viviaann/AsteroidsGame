@@ -20,7 +20,7 @@ class Bullet extends Floater
   {
     myCenterX+= myDirectionX;
     myCenterY+= myDirectionY;
-    three.getX()= three.getX() +1;
+
   }
     public void setX(int x)
    {

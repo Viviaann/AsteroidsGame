@@ -69,6 +69,13 @@ public void draw()
   {
     spark[i].show();
   }
+  for (int b=0; b<Bullett.size(); b++)
+  {
+    Bullett.get(b).move();
+    Bullett.get(b).show();
+    // if(dist(three.getX(), three.getY(),Bullett.get(b).getX(), Bullett.get(b).getY())<30)
+    //   Bullett.remove(b);
+  }
   for (int i=0; i<w; i++)
   {
     star[i].show();
@@ -82,14 +89,14 @@ public void draw()
     theRocks.get(i).show();
     if(dist(one.getX(), one.getY(),theRocks.get(i).getX(), theRocks.get(i).getY())<30)
       theRocks.remove(i);
+
+     
+
+    if(dist(Bullett.get(b).getX(), Bullett.get(b).getY(), theRocks.get(i).getX(), theRocks.get(i).getY())<30)
+    theRocks.remove(i);
   }
-  for (int b=0; b<Bullett.size(); b++)
-  {
-    Bullett.get(b).move();
-    Bullett.get(b).show();
-    if(dist(three.getX(), three.getY(),Bullett.get(b).getX(), Bullett.get(b).getY())<30)
-      Bullett.remove(b);
   }
+  
   
  
 
@@ -127,7 +134,8 @@ if(key==' ')
 {
 
   Bullett.add(b, three=new Bullet(one));
-  three.accelerate(.4);
+ 
+  
 }
 }
 }
