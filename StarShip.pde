@@ -9,21 +9,21 @@ class SpaceShip extends Floater
     myColor2=color(255,255,255);
     xCorners=new int[corners];
     yCorners=new int[corners];
-    xCorners[0]= 36;
+    xCorners[0]= 12;
     yCorners[0]=0;
-    xCorners[1]= 12;
-    yCorners[1]=21;
-    xCorners[2]=-15;
-    yCorners[2]=21;
-    xCorners[3]=-36;
-    yCorners[3]=45;
-    xCorners[4]=-36;
-    yCorners[4]=-45;
-    xCorners[5]=-15;
-    yCorners[5]=-21;
-    xCorners[6]=12;
-    yCorners[6]=-21;
-    xCorners[7]=36;
+    xCorners[1]= 4;
+    yCorners[1]=7;
+    xCorners[2]=-5;
+    yCorners[2]=7;
+    xCorners[3]=-12;
+    yCorners[3]=15;
+    xCorners[4]=-12;
+    yCorners[4]=-15;
+    xCorners[5]=-5;
+    yCorners[5]=-7;
+    xCorners[6]=4;
+    yCorners[6]=-7;
+    xCorners[7]=12;
     yCorners[7]=0;
 
   } 

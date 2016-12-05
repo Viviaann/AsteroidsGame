@@ -10,7 +10,7 @@ ArrayList <Asteroids> theRocks;
 Asteroids two;
 ArrayList <Bullet> Bullett= new ArrayList <Bullet>();;
 Bullet three;
-
+int mode=3;
 
 
 
@@ -42,7 +42,7 @@ for(int i=0; i<w; i++)
 
 
 theRocks = new ArrayList <Asteroids>();
-for (int i=0; i<10; i++)
+for (int i=0; i<20; i++)
   {
     theRocks.add(i, two= new Asteroids());
   }
@@ -63,7 +63,16 @@ for (int i=0; i<10; i++)
 }
 public void draw() 
 {
-  background(0,0,0);
+  if (mode==0)
+  {
+    background(0,0,0);
+    fill(0,255,0);
+    strokeWeight(3);
+    text("Press 0 to start!",350,350);
+  }
+ if(mode==1)
+  {
+ background(0,0,0);
   image(back,0,0,width,height);
  for (int i=0; i<n; i++)
   {
@@ -90,23 +99,46 @@ public void draw()
     if(dist(one.getX(), one.getY(),theRocks.get(i).getX(), theRocks.get(i).getY())<30)
       theRocks.remove(i);
 
-     
-
-    if(dist(Bullett.get(b).getX(), Bullett.get(b).getY(), theRocks.get(i).getX(), theRocks.get(i).getY())<30)
+     for (int b=0; b<Bullett.size(); b++)
+     {
+       if(dist(Bullett.get(b).getX(), Bullett.get(b).getY(), theRocks.get(i).getX(), theRocks.get(i).getY())<30)
     theRocks.remove(i);
+     }
+
+   
   }
+}
+  
+  // if( mode==3)
+  // {
+  //   background(0,0,0);
+  //   fill(0,255,0);
+  //   strokeWeight(3);
+  //   text("Game Over",350,350);
+  // }
+    
   }
+
+ 
+  
   
   
  
 
-}
+
 
 
 
 
 public void keyPressed()
 {
+   if (key=='0')
+  {
+    mode=1;
+        
+   //rocket=true; 
+    //one.rotate(30);
+    }
   if (key=='w')
   {
     one.accelerate(.4);
@@ -119,11 +151,11 @@ if (key=='a')
   one.rotate(35);
 
 }
-if (key=='d')
+if (key=='s')
 {
   one.accelerate(-.2);
 }
-if (key=='s')
+if (key=='d')
 {
   one.rotate(-35);
 }
@@ -205,7 +237,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   {             
     fill(myColor2);   
     stroke(myColor); 
-    strokeWeight(5);
+    strokeWeight(3);
 
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180);                 
