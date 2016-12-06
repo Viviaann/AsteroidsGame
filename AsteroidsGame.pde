@@ -11,12 +11,15 @@ Asteroids two;
 ArrayList <Bullet> Bullett= new ArrayList <Bullet>();;
 Bullet three;
 int mode=3;
-
+int rockcount=0;
+int expand=250;
+int expandi=400;
 
 
 
 public void setup() 
 {
+  mode=0;
   size(800,800);
   back=loadImage("ppp.jpg");
   starr=loadImage("ooo.png");
@@ -48,6 +51,7 @@ for (int i=0; i<20; i++)
   }
 
 
+  
 
 // for (int x=0; x< two .length; x++)
 // {
@@ -66,9 +70,21 @@ public void draw()
   if (mode==0)
   {
     background(0,0,0);
-    fill(0,255,0);
-    strokeWeight(3);
-    text("Press 0 to start!",350,350);
+    image(spacestar,210,150,width/2,height/2);
+    stroke(0,255,0);
+    noFill();
+    rect(110, 150, expandi,expand);
+    expand++;
+    expandi++;
+    if(expand> 600 || expandi>600)
+    {
+      expand=250;
+      expandi= 400;
+    }
+    fill(150,187,212);
+    strokeWeight(10);
+    textSize(30);
+    text("Press 0 to start!",300,550);
   }
  if(mode==1)
   {
@@ -102,20 +118,33 @@ public void draw()
      for (int b=0; b<Bullett.size(); b++)
      {
        if(dist(Bullett.get(b).getX(), Bullett.get(b).getY(), theRocks.get(i).getX(), theRocks.get(i).getY())<30)
-    theRocks.remove(i);
+       {
+         theRocks.remove(i);
+    rockcount++;
+       }
+   
      }
 
-   
+   if (mode==1)
+{
+  fill(255,255,255);
+  rect(570,20, 230,50);
+  fill(0,0,255);
+  strokeWeight(190);
+  text("Your Score:"+ rockcount, 600 ,50);
+}
   }
+  
 }
   
-  // if( mode==3)
-  // {
-  //   background(0,0,0);
-  //   fill(0,255,0);
-  //   strokeWeight(3);
-  //   text("Game Over",350,350);
-  // }
+  if( mode==3)
+  {
+    background(0,0,0);
+    fill(0,255,0);
+    strokeWeight(3);
+    textSize(10);
+    text("Game Over",350,350);
+  }
     
   }
 
