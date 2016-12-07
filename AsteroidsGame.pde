@@ -10,7 +10,7 @@ ArrayList <Asteroids> theRocks;
 Asteroids two;
 ArrayList <Bullet> Bullett= new ArrayList <Bullet>();;
 Bullet three;
-int mode=3;
+int mode=4;
 int rockcount=0;
 int expand=250;
 int expandi=400;
@@ -71,12 +71,12 @@ public void draw()
   {
     background(0,0,0);
     image(spacestar,210,150,width/2,height/2);
-    stroke(0,255,0);
+    stroke(0,200,0);
     noFill();
-    rect(110, 150, expandi,expand);
+    ellipse(400,400,expand,expand);
     expand++;
     expandi++;
-    if(expand> 600 || expandi>600)
+    if(expand> 700 || expandi>700)
     {
       expand=250;
       expandi= 400;
@@ -84,8 +84,27 @@ public void draw()
     fill(150,187,212);
     strokeWeight(10);
     textSize(30);
-    text("Press 0 to start!",300,550);
+    text("Press the mouse to start!",200,550);
   }
+  if (mode==2)
+  {
+    background(0,0,0);
+    noFill();
+    rect(100,80,550,350);
+    fill(220,168,237);
+    strokeWeight(15);
+    text("Instructions:", 130,150);
+    text("Press w to accelerate forward", 130,200);
+    text("s to accelerate backward",220,250);
+    text("a to rotate right",220,300);
+    text("d to rotate left",220,350);
+    text("spacebar to shoot!",220,400);
+    fill(189,227,240 );
+    strokeWeight(15);
+    text("Press 0 to play!",200,550);
+
+  }
+  
  if(mode==1)
   {
  background(0,0,0);
@@ -177,7 +196,7 @@ public void keyPressed()
     }
 if (key=='a')
 {
-  one.rotate(35);
+  one.rotate(-50);
 
 }
 if (key=='s')
@@ -186,7 +205,7 @@ if (key=='s')
 }
 if (key=='d')
 {
-  one.rotate(-35);
+  one.rotate(50);
 }
 if(key==' ')
 {
@@ -199,6 +218,11 @@ if(key==' ')
   
 }
 }
+
+}
+public void mouseClicked()
+{
+  mode=2;
 }
 
 
